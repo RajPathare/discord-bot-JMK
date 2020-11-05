@@ -74,35 +74,22 @@ client.on("message", (message)=>{
 })
 
 client.on('ready',()=>{
-    // cron.schedule('00 06 * * *',()=>{
-    //     console.log('call trigger!');
-    //     sendGif();
-    //     sendMessageForStandup();
-    // })
-    // cron.schedule('30 04 * * *',()=>{
-    //     console.log('markin trigger!');
-    //     sendGif();
-    //     sendMessageForMarkIn();
-    // })
-    // cron.schedule('00 14 * * *',()=>{
-    //     console.log('markout trigger!');
-    //     sendGif();
-    //     sendMessageForMarkOut();
-    // })
-    cron.schedule('27 14 * * *',()=>{
+    cron.schedule('00 06 * * *',()=>{
         console.log('call trigger!');
         sendGif();
-        sendRandomMessage();
-        // sendMessageForStandup();
+        sendMessageForStandup();
+    })
+    cron.schedule('30 04 * * *',()=>{
+        console.log('markin trigger!');
+        sendGif();
+        sendMessageForMarkIn();
+    })
+    cron.schedule('00 14 * * *',()=>{
+        console.log('markout trigger!');
+        sendGif();
+        sendMessageForMarkOut();
     })
 })
-
-const sendRandomMessage = async () => {
-    var guild = client.guilds.cache.get('689367318345809920');
-    if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("Random message!");
-    }
-}
 
 const sendMessageForStandup = async () => {
     var guild = client.guilds.cache.get('689367318345809920');
