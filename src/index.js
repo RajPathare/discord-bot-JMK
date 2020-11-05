@@ -12,7 +12,8 @@ const PORT = process.env.PORT || 3000;
 
 app.get('/',(req,res)=>{
     res.json({
-        "message": "The app is running fine!"
+        "message": "The app is running fine!",
+        "time": new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') 
     });
 })
 
@@ -75,20 +76,18 @@ client.on("message", (message)=>{
 client.on('ready',()=>{
     cron.schedule('00 06 * * *',()=>{
         console.log('call trigger!');
-        // sendGif();
+        sendGif();
         sendMessageForStandup();
     })
     cron.schedule('30 04 * * *',()=>{
         console.log('markin trigger!');
-        // sendGif();
+        sendGif();
         sendMessageForMarkIn();
-        // sendGif();
     })
     cron.schedule('00 14 * * *',()=>{
         console.log('markout trigger!');
-        // sendGif();
+        sendGif();
         sendMessageForMarkOut();
-        // sendGif();
     })
 })
 
