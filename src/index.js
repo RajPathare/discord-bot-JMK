@@ -25,7 +25,7 @@ app.get('*',(req,res)=>{
 
 
 const client = new Discord.Client();
-client.login(process.env.BOT_TOKEN);
+client.login(secrets.BOT_TOKEN);
 
 client.on("message", (message)=>{
     if(message.author.bot) return;
