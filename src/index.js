@@ -3,13 +3,12 @@ var cron = require('node-cron');
 const express = require('express');
 require('dotenv').config();
 const imagefetch = require('reddit-image-fetcher');
+const ytdl = require('discord-ytdl-core');
+const search = require('youtube-search');
 
 const prefix = '@';
-
 const app = express();
-
 const PORT = process.env.PORT || 3000;
-
 
 app.get('/',(req,res)=>{
     res.json({
@@ -29,21 +28,46 @@ const client = new Discord.Client();
 client.login(process.env.BOT_TOKEN);
 
 client.on("message", (message)=>{
-    if(message.author.bot) return;
+    // if(message.author.bot) return;
     if(!message.content.startsWith(prefix)) return;
 
     const commandBody = message.content.slice(prefix.length);
-    console.log(commandBody);
     const args = commandBody.split(' ');
-    console.log('ARGS',args);
-    console.log(args[0], args[1], args[2]);
-    const command = args.shift().toLowerCase();
+    console.log(args);
+    if (args[0] === "play") {
+        console.log('invoked play')
+        if (!message.member.voice.channel) return message.channel.send("You're not in a voice channel?");
 
-    console.log(command);
+        let songName = args
+        songName.shift();
+        songName = songName.join(' ');
 
-    if(command === "ping"){
-        const timeTaken = Date.now() - message.createdTimestamp;
-        message.reply(`pong, Latency - ${timeTaken}ms`);
+        var opts = {
+            maxResults: 1,
+            key: process.env.YOUTUBE_KEY
+        };
+
+        search(songName, opts, function(err, results) {
+            if(err) return console.log(err);
+            let stream = ytdl(results[0].link, {
+                filter: "audioonly",
+                opusEncoded: false,
+                fmt: "mp3",
+                encoderArgs: ['-af', 'bass=g=10,dynaudnorm=f=200']
+            });
+
+            message.member.voice.channel.join()
+            .then(connection => {
+                let dispatcher = connection.play(stream, {
+                    type: "unknown"
+                })
+                .on("finish", () => {
+                    message.guild.me.voice.channel.leave();
+                })
+                message.channel.send(`Now Playing! - ${results[0].title}`);
+                message.channel.send(`${results[0].thumbnails.default.url}`);
+            });
+        });
     }
     
 })
