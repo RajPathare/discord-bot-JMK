@@ -74,10 +74,10 @@ client.on("message", (message)=>{
 })
 
 client.on('ready',()=>{
-    cron.schedule('00 06 * * *',()=>{
-        console.log('call trigger!');
+    cron.schedule('00 17 * * *',()=>{
+        console.log('game trigger!');
         sendGif();
-        sendMessageForStandup();
+        sendMessageForAmongUs();
     })
     cron.schedule('30 04 * * *',()=>{
         console.log('markin trigger!');
@@ -91,10 +91,10 @@ client.on('ready',()=>{
     })
 })
 
-const sendMessageForStandup = async () => {
+const sendMessageForAmongUs = async () => {
     var guild = client.guilds.cache.get('689367318345809920');
     if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("@everyone Call pe chalo!!!");
+        guild.channels.cache.get('689367318345809923').send("@everyone Among us anyone?");
     }
 }
 
