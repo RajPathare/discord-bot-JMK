@@ -49,16 +49,17 @@ client.on("message", (message)=>{
 })
 
 client.on('ready',()=>{
-    cron.schedule('30 11 * * *',()=>{
+    cron.schedule('00 06 * * *',()=>{
         console.log('call trigger!');
+        sendGif();
         sendMessageForStandup();
     })
-    cron.schedule('00 10 * * *',()=>{
+    cron.schedule('30 04 * * *',()=>{
         console.log('markin trigger!');
         sendMessageForMarkIn();
         sendGif();
     })
-    cron.schedule('30 19 * * *',()=>{
+    cron.schedule('00 14 * * *',()=>{
         console.log('markout trigger!');
         sendMessageForMarkOut();
         sendGif();
