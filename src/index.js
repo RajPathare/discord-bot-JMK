@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 var cron = require('node-cron');
 const express = require('express');
 require('dotenv').config();
+const imagefetch = require('reddit-image-fetcher');
 
 const prefix = '@';
 
@@ -54,10 +55,12 @@ client.on('ready',()=>{
     })
     cron.schedule('00 10 * * *',()=>{
         console.log('markin trigger!');
+        sendGif();
         sendMessageForMarkIn();
     })
     cron.schedule('30 19 * * *',()=>{
         console.log('markout trigger!');
+        sendGif();
         sendMessageForMarkOut();
     })
 })
@@ -81,6 +84,23 @@ const sendMessageForMarkOut = async () => {
     if(guild && guild.channels.cache.get('689367318345809923')){
         guild.channels.cache.get('689367318345809923').send("@everyone MARK OUT!!!");
     }
+}
+
+const sendGif = async () => {
+
+    imagefetch.fetch({
+        type: 'meme',
+        total: 1, 
+        addSubreddit: ['memes', 'funny'], 
+        removeSubreddit: ['dankmemes']
+    }).then(result => {
+        console.log(result[0].image) 
+        let attachment = new Discord.MessageAttachment(result[0].image);
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send(attachment);
+        }
+    });
 }
 
 app.listen(PORT, () => {
