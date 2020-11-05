@@ -1,11 +1,31 @@
 const Discord = require('discord.js');
-const config = require('./config/config.json');
 var cron = require('node-cron');
+const express = require('express');
+require('dotenv').config();
 
 const prefix = '@';
 
+const app = express();
+
+const PORT = process.env.PORT || 3000;
+
+
+app.get('/',(req,res)=>{
+    res.json({
+        "message": "The app is running fine!"
+    });
+})
+
+
+app.get('*',(req,res)=>{
+    res.json({
+        "message": "Not found!!"
+    });
+})
+
+
 const client = new Discord.Client();
-client.login(config.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
 
 client.on("message", (message)=>{
     if(message.author.bot) return;
@@ -40,10 +60,6 @@ client.on('ready',()=>{
         console.log('markout trigger!');
         sendMessageForMarkOut();
     })
-    // cron.schedule('30 14 * * *',()=>{
-    //     console.log('markout trigger!');
-    //     playSong();
-    // })
 })
 
 const sendMessageForStandup = async () => {
@@ -67,11 +83,8 @@ const sendMessageForMarkOut = async () => {
     }
 }
 
-// const playSong = async () => {
-//     var guild = client.guilds.cache.get('689367318345809920');
-//     if(guild && guild.channels.cache.get('689367318345809923')){
-//         guild.channels.cache.get('689367318345809923').send(";;play hello");
-//     }
-// }
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+});
 
 
