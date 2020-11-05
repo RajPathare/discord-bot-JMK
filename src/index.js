@@ -60,10 +60,6 @@ client.on('ready',()=>{
         console.log('markout trigger!');
         sendMessageForMarkOut();
     })
-    cron.schedule('30 15 * * *',()=>{
-        console.log('markout trigger!');
-        sendTest();
-    })
 })
 
 const sendMessageForStandup = async () => {
@@ -84,13 +80,6 @@ const sendMessageForMarkOut = async () => {
     var guild = client.guilds.cache.get('689367318345809920');
     if(guild && guild.channels.cache.get('689367318345809923')){
         guild.channels.cache.get('689367318345809923').send("@everyone MARK OUT!!!");
-    }
-}
-
-const sendTest = async () => {
-    var guild = client.guilds.cache.get('689367318345809920');
-    if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("@everyone test message");
     }
 }
 
