@@ -124,7 +124,7 @@ client.on('ready',()=>{
         console.log('markout trigger!');
         sendMessageForMarkOut();
     })
-    cron.schedule('00 17 * * *',()=>{
+    cron.schedule('30 16 * * *',()=>{
         console.log('game trigger!');
         sendGif();
         sendMessageForAmongUs();
