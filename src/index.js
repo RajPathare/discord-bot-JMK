@@ -28,7 +28,8 @@ var dayName = weekday[d.getDay()];
 app.get('/',(req,res)=>{
     res.json({
         "message": "The app is running fine!",
-        "time": new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') 
+        "time": new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') ,
+        "day": dayName
     });
 })
 
