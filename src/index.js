@@ -93,14 +93,14 @@ client.on('ready',()=>{
         sendGif();
         sendMessageForMarkOut();
     })
+    cron.schedule('00 12 * * *',()=>{
+        console.log('joke trigger!');
+        sendMessageForJoke();
+    })
     cron.schedule('00 17 * * *',()=>{
         console.log('game trigger!');
         sendGif();
         sendMessageForAmongUs();
-    })
-    cron.schedule('0 */3 * * *',()=>{
-        console.log('joke trigger!');
-        sendMessageForJoke();
     })
 })
 
