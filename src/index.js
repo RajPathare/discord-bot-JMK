@@ -132,9 +132,27 @@ client.on('ready',()=>{
 })
 
 const sendMessageForAmongUs = async () => {
-    var guild = client.guilds.cache.get('689367318345809920');
-    if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("@everyone Among us anyone?");
+    var day = getMyDay();
+    if(day == 'Saturday' || day == 'Sunday')
+    {
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send(`@everyone Hey it's ${day}! It's time for Among us!`);
+        }
+    }
+    if(day == 'Friday')
+    {
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send(`@everyone Finally it's ${day}! We gotta play Among us!!`);
+        }
+    }
+    else
+    {
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send("@everyone Among us anyone?");
+        }
     }
 }
 
