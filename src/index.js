@@ -98,7 +98,6 @@ client.on('ready',()=>{
 
     cron.schedule('00 05 * * *',()=>{
         console.log('markin trigger!');
-        sendGif();
         sendMessageForMarkInOrWeekend();
     })
     cron.schedule('00 06 * * *',()=>{
@@ -123,7 +122,6 @@ client.on('ready',()=>{
     })
     cron.schedule('00 14 * * *',()=>{
         console.log('markout trigger!');
-        sendGif();
         sendMessageForMarkOut();
     })
     cron.schedule('00 17 * * *',()=>{
