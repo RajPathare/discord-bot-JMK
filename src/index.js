@@ -16,6 +16,19 @@ const prefix = '@';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+
+var d = new Date();
+var weekday = new Array(7);
+weekday[0] = "Sunday";
+weekday[1] = "Monday";
+weekday[2] = "Tuesday";
+weekday[3] = "Wednesday";
+weekday[4] = "Thursday";
+weekday[5] = "Friday";
+weekday[6] = "Saturday";
+
+var dayName = weekday[d.getDay()];
+
 app.get('/',(req,res)=>{
     res.json({
         "message": "The app is running fine!",
@@ -79,42 +92,64 @@ client.on("message", (message)=>{
 })
 
 client.on('ready',()=>{
-    cron.schedule('00 05 * * *',()=>{
-        console.log('markin trigger!');
-        sendGif();
-        sendMessageForMarkIn();
-    })
-    cron.schedule('00 06 * * *',()=>{
-        console.log('call trigger!');
-        sendMessageForCall();
-    })
-    cron.schedule('00 10 * * *',()=>{
-        console.log('quote trigger!');
-        sendQuote(); 
-    })
-    cron.schedule('00 11 * * *',()=>{
-        console.log('joke trigger!');
-        sendMessageForJoke();
-    })
-    cron.schedule('00 12 * * *',()=>{
-        console.log('fact trigger!');
-        sendMessageForFact();
-    })
-    cron.schedule('00 13 * * *',()=>{
-        console.log('fact trigger!');
-        sendMessageForFact();
-    })
-    cron.schedule('00 14 * * *',()=>{
-        console.log('markout trigger!');
-        sendGif();
-        sendMessageForMarkOut();
-    })
-    cron.schedule('00 17 * * *',()=>{
-        console.log('game trigger!');
-        sendGif();
-        sendMessageForAmongUs();
-    })
+
+    if(dayName == 'Saturday' || dayName == 'Sunday')
+    {
+        console.log('Weekend');
+        cron.schedule('00 06 * * *',()=>{
+            console.log('markin trigger!');
+            sendMessageForWeekend();
+        })
+    }
+    else
+    {
+        console.log('Normal day');
+        cron.schedule('00 05 * * *',()=>{
+            console.log('markin trigger!');
+            sendGif();
+            sendMessageForMarkIn();
+        })
+        cron.schedule('00 06 * * *',()=>{
+            console.log('call trigger!');
+            sendMessageForCall();
+        })
+        cron.schedule('00 10 * * *',()=>{
+            console.log('quote trigger!');
+            sendQuote(); 
+        })
+        cron.schedule('00 11 * * *',()=>{
+            console.log('joke trigger!');
+            sendMessageForJoke();
+        })
+        cron.schedule('00 12 * * *',()=>{
+            console.log('fact trigger!');
+            sendMessageForFact();
+        })
+        cron.schedule('00 13 * * *',()=>{
+            console.log('fact trigger!');
+            sendMessageForFact();
+        })
+        cron.schedule('00 14 * * *',()=>{
+            console.log('markout trigger!');
+            sendGif();
+            sendMessageForMarkOut();
+        })
+        cron.schedule('00 17 * * *',()=>{
+            console.log('game trigger!');
+            sendGif();
+            sendMessageForAmongUs();
+        })
+    }
 })
+
+
+const sendMessageForWeekend = async () => {
+    var guild = client.guilds.cache.get('689367318345809920');
+    if(guild && guild.channels.cache.get('689367318345809923')){
+        guild.channels.cache.get('689367318345809923').send(`@everyone Even if it's ${dayName}, I hope to see you soon!`);
+    }
+}
+
 
 const sendMessageForAmongUs = async () => {
     var guild = client.guilds.cache.get('689367318345809920');
