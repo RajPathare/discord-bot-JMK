@@ -5,7 +5,8 @@ require('dotenv').config();
 const imagefetch = require('reddit-image-fetcher');
 const ytdl = require('discord-ytdl-core');
 const search = require('youtube-search');
-const Quote = require('inspirational-quotes');
+var Quote = require('inspirational-quotes');
+var oneLinerJoke = require('one-liner-joke');
 
 const prefix = '@';
 const app = express();
@@ -97,6 +98,10 @@ client.on('ready',()=>{
         sendGif();
         sendMessageForAmongUs();
     })
+    cron.schedule('0 */2 * * *',()=>{
+        console.log('joke trigger!');
+        sendMessageForJoke();
+    })
 })
 
 const sendMessageForAmongUs = async () => {
@@ -133,6 +138,16 @@ const sendQuote = async () => {
     if(guild && guild.channels.cache.get('689367318345809923')){
         guild.channels.cache.get('689367318345809923').send("It's almost half-day! Here's a nice quote for you which might inspire you in some way ~");
         guild.channels.cache.get('689367318345809923').send(`${theQuote.text}` - `${theQuote.author}`);
+    }
+}
+
+const sendMessageForJoke = async () => {
+    var getRandomJoke = oneLinerJoke.getRandomJokeWithTag('flirty');
+    console.log(getRandomJoke);
+    var guild = client.guilds.cache.get('689367318345809920');
+    if(guild && guild.channels.cache.get('689367318345809923')){
+        guild.channels.cache.get('689367318345809923').send("Hmm... I can't bear silence. I just came up with a pickup line, hope you'll like it!");
+        guild.channels.cache.get('689367318345809923').send(getRandomJoke.body);
     }
 }
 
