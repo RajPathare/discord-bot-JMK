@@ -140,7 +140,7 @@ const sendMessageForAmongUs = async () => {
             guild.channels.cache.get('689367318345809923').send(`@everyone Hey it's ${day}! It's time for Among us!`);
         }
     }
-    if(day == 'Friday')
+    else if(day == 'Friday')
     {
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
