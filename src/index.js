@@ -7,7 +7,10 @@ const ytdl = require('discord-ytdl-core');
 const search = require('youtube-search');
 var Quote = require('inspirational-quotes');
 var oneLinerJoke = require('one-liner-joke');
-const facts = require('facts-generator');
+const factful = require('factful.js');
+
+
+const facts = factful.fact();
 
 const prefix = '@';
 const app = express();
@@ -97,6 +100,10 @@ client.on('ready',()=>{
         console.log('fact trigger!');
         sendMessageForFact();
     })
+    cron.schedule('00 13 * * *',()=>{
+        console.log('fact trigger!');
+        sendMessageForFact();
+    })
     cron.schedule('00 14 * * *',()=>{
         console.log('markout trigger!');
         sendGif();
@@ -157,12 +164,46 @@ const sendMessageForJoke = async () => {
 }
 
 const sendMessageForFact = async () => {
-    var fact = facts.getRandomFact();
-    console.log(fact);
     var guild = client.guilds.cache.get('689367318345809920');
-    if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("Here's a random fact for you!");
-        guild.channels.cache.get('689367318345809923').send(fact);
+    let types = ['space', 'covid', 'computer', 'food'];
+    var numb = Math.floor(Math.random() * 4); 
+    var myType = types[numb]; 
+    let finalType = `facts.${myType}`;
+    console.log(finalType);
+    if(finalType == 'facts.covid')
+    {
+        console.log('cov');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send("Here's a random covid19 fact for you!");
+            guild.channels.cache.get('689367318345809923').send(facts.covid);
+        }
+
+    }
+    if(finalType == 'facts.computer')
+    {
+        console.log('computer');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send("Here's a random computer fact for you!");
+            guild.channels.cache.get('689367318345809923').send(facts.computer);
+        }
+
+    }
+    if(finalType == 'facts.space')
+    {
+        console.log('space');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send("Here's a random space fact for you!");
+            guild.channels.cache.get('689367318345809923').send(facts.space);
+        }
+
+    }
+    if(finalType == 'facts.food')
+    {
+        console.log('food');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send("Here's a random food fact for you!");
+            guild.channels.cache.get('689367318345809923').send(facts.food);
+        }
     }
 }
 
