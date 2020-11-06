@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "fetch-gifs": "^0.2.0",
     "giphy-api": "^2.0.1",
+    "inspirational-quotes": "^1.0.8",
     "node-cron": "^2.0.3",
     "reddit-image-fetcher": "^2.0.3",
     "youtube-search": "^1.1.4"

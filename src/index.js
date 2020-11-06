@@ -5,6 +5,7 @@ require('dotenv').config();
 const imagefetch = require('reddit-image-fetcher');
 const ytdl = require('discord-ytdl-core');
 const search = require('youtube-search');
+const Quote = require('inspirational-quotes');
 
 const prefix = '@';
 const app = express();
@@ -103,6 +104,13 @@ client.on('ready',()=>{
         }
         else sendMessageForFun();
     })
+    cron.schedule('00 10 * * *',()=>{
+        if(!dayName == "Saturday" || !dayName == "Sunday")
+        {
+            console.log('quote trigger!');
+            sendQuote();
+        }
+    })
     cron.schedule('00 14 * * *',()=>{
         if(!dayName == "Saturday" || !dayName == "Sunday")
         {
@@ -150,6 +158,15 @@ const sendMessageForFun = async () => {
     var guild = client.guilds.cache.get('689367318345809920');
     if(guild && guild.channels.cache.get('689367318345809923')){
         guild.channels.cache.get('689367318345809923').send("@everyone It's weekend and I'm bored. I miss you guys!");
+    }
+}
+
+const sendQuote = async () => {
+    var theQuote = Quote.getQuote();
+    var guild = client.guilds.cache.get('689367318345809920');
+    if(guild && guild.channels.cache.get('689367318345809923')){
+        guild.channels.cache.get('689367318345809923').send("It's almost half-day! Here's a nice quote for you which might inspire you in some way ~");
+        guild.channels.cache.get('689367318345809923').send(`${theQuote.text}` - `${theQuote.author}`);
     }
 }
 
