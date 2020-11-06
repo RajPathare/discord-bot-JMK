@@ -88,14 +88,14 @@ client.on('ready',()=>{
         console.log('quote trigger!');
         sendQuote(); 
     })
+    cron.schedule('00 11 * * *',()=>{
+        console.log('joke trigger!');
+        sendMessageForJoke();
+    })
     cron.schedule('00 14 * * *',()=>{
         console.log('markout trigger!');
         sendGif();
         sendMessageForMarkOut();
-    })
-    cron.schedule('00 12 * * *',()=>{
-        console.log('joke trigger!');
-        sendMessageForJoke();
     })
     cron.schedule('00 17 * * *',()=>{
         console.log('game trigger!');
