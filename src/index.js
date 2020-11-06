@@ -80,7 +80,6 @@ client.on('ready',()=>{
     })
     cron.schedule('00 06 * * *',()=>{
         console.log('call trigger!');
-        sendGif();
         sendMessageForCall();
     })
     cron.schedule('00 14 * * *',()=>{
