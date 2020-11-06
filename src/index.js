@@ -84,7 +84,7 @@ client.on('ready',()=>{
         console.log('call trigger!');
         sendMessageForCall();
     })
-    cron.schedule('30 9 * * *',()=>{
+    cron.schedule('00 10 * * *',()=>{
         console.log('quote trigger!');
         sendQuote(); 
     })
@@ -98,7 +98,7 @@ client.on('ready',()=>{
         sendGif();
         sendMessageForAmongUs();
     })
-    cron.schedule('0 */2 * * *',()=>{
+    cron.schedule('0 */3 * * *',()=>{
         console.log('joke trigger!');
         sendMessageForJoke();
     })
@@ -133,17 +133,17 @@ const sendMessageForCall = async () => {
 }
 
 const sendQuote = async () => {
-    var theQuote = Quote.getQuote();
+    var theQuote = await Quote.getQuote();
     var guild = client.guilds.cache.get('689367318345809920');
     if(guild && guild.channels.cache.get('689367318345809923')){
         guild.channels.cache.get('689367318345809923').send("It's almost half-day! Here's a nice quote for you which might inspire you in some way ~");
-        guild.channels.cache.get('689367318345809923').send(`${theQuote.text}` - `${theQuote.author}`);
+        guild.channels.cache.get('689367318345809923').send(theQuote.text);
+        guild.channels.cache.get('689367318345809923').send("-",theQuote.author);
     }
 }
 
 const sendMessageForJoke = async () => {
     var getRandomJoke = oneLinerJoke.getRandomJokeWithTag('flirty');
-    console.log(getRandomJoke);
     var guild = client.guilds.cache.get('689367318345809920');
     if(guild && guild.channels.cache.get('689367318345809923')){
         guild.channels.cache.get('689367318345809923').send("Hmm... I can't bear silence. I just came up with a pickup line, hope you'll like it!");
