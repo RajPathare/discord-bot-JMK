@@ -5,6 +5,7 @@ require('dotenv').config();
 const imagefetch = require('reddit-image-fetcher');
 const ytdl = require('discord-ytdl-core');
 const search = require('youtube-search');
+var http = require('http');
 
 const prefix = '@';
 const app = express();
@@ -24,6 +25,9 @@ app.get('*',(req,res)=>{
     });
 })
 
+cron.schedule('*/10 * * * *',()=>{
+    http.get('https://discord-jmk-bot.herokuapp.com/');
+})
 
 const client = new Discord.Client();
 client.login(process.env.BOT_TOKEN);
