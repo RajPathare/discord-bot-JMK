@@ -83,10 +83,6 @@ client.on('ready',()=>{
         console.log('call trigger!');
         sendMessageForCall();
     })
-    cron.schedule('45 06 * * *',()=>{
-        console.log('call trigger!');
-        sendMessageForCall();
-    })
     cron.schedule('00 10 * * *',()=>{
         console.log('quote trigger!');
         sendQuote(); 
