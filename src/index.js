@@ -7,6 +7,7 @@ const ytdl = require('discord-ytdl-core');
 const search = require('youtube-search');
 var Quote = require('inspirational-quotes');
 var oneLinerJoke = require('one-liner-joke');
+const facts = require('facts-generator');
 
 const prefix = '@';
 const app = express();
@@ -92,6 +93,10 @@ client.on('ready',()=>{
         console.log('joke trigger!');
         sendMessageForJoke();
     })
+    cron.schedule('00 12 * * *',()=>{
+        console.log('fact trigger!');
+        sendMessageForFact();
+    })
     cron.schedule('00 14 * * *',()=>{
         console.log('markout trigger!');
         sendGif();
@@ -148,6 +153,16 @@ const sendMessageForJoke = async () => {
     if(guild && guild.channels.cache.get('689367318345809923')){
         guild.channels.cache.get('689367318345809923').send("Hmm... I can't bear silence. I just came up with a pickup line, hope you'll like it!");
         guild.channels.cache.get('689367318345809923').send(getRandomJoke.body);
+    }
+}
+
+const sendMessageForFact = async () => {
+    var fact = facts.getRandomFact();
+    console.log(fact);
+    var guild = client.guilds.cache.get('689367318345809920');
+    if(guild && guild.channels.cache.get('689367318345809923')){
+        guild.channels.cache.get('689367318345809923').send("Here's a random fact for you!");
+        guild.channels.cache.get('689367318345809923').send(fact);
     }
 }
 
