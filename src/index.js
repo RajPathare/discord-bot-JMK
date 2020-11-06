@@ -10,6 +10,20 @@ const prefix = '@';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+
+var d = new Date();
+var weekday = new Array(7);
+weekday[0] = "Sunday";
+weekday[1] = "Monday";
+weekday[2] = "Tuesday";
+weekday[3] = "Wednesday";
+weekday[4] = "Thursday";
+weekday[5] = "Friday";
+weekday[6] = "Saturday";
+
+var dayName = weekday[d.getDay()];
+
+
 app.get('/',(req,res)=>{
     res.json({
         "message": "The app is running fine!",
@@ -74,18 +88,28 @@ client.on("message", (message)=>{
 
 client.on('ready',()=>{
     cron.schedule('00 05 * * *',()=>{
-        console.log('markin trigger!');
-        sendGif();
-        sendMessageForMarkIn();
+        if(!dayName == "Saturday" || !dayName == "Sunday")
+        {
+            console.log('markin trigger!');
+            sendGif();
+            sendMessageForMarkIn();
+        }
     })
     cron.schedule('00 06 * * *',()=>{
-        console.log('call trigger!');
-        sendMessageForCall();
+        if(!dayName == "Saturday" || !dayName == "Sunday")
+        {
+            console.log('call trigger!');
+            sendMessageForCall();
+        }
+        else sendMessageForFun();
     })
     cron.schedule('00 14 * * *',()=>{
-        console.log('markout trigger!');
-        sendGif();
-        sendMessageForMarkOut();
+        if(!dayName == "Saturday" || !dayName == "Sunday")
+        {
+            console.log('markout trigger!');
+            sendGif();
+            sendMessageForMarkOut();
+        }
     })
     cron.schedule('00 17 * * *',()=>{
         console.log('game trigger!');
@@ -119,6 +143,13 @@ const sendMessageForCall = async () => {
     var guild = client.guilds.cache.get('689367318345809920');
     if(guild && guild.channels.cache.get('689367318345809923')){
         guild.channels.cache.get('689367318345809923').send("Hey it's time for standup! Do you remember the code? Let me help you out - 243319");
+    }
+}
+
+const sendMessageForFun = async () => {
+    var guild = client.guilds.cache.get('689367318345809920');
+    if(guild && guild.channels.cache.get('689367318345809923')){
+        guild.channels.cache.get('689367318345809923').send("@everyone It's weekend and I'm bored. I miss you guys!");
     }
 }
 
