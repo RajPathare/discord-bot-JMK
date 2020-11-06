@@ -25,9 +25,9 @@ app.get('*',(req,res)=>{
     });
 })
 
-cron.schedule('*/10 * * * *',()=>{
-    http.get('https://discord-jmk-bot.herokuapp.com/');
-})
+// cron.schedule('*/10 * * * *',()=>{
+//     http.get('https://discord-jmk-bot.herokuapp.com/');
+// })
 
 const client = new Discord.Client();
 client.login(process.env.BOT_TOKEN);
