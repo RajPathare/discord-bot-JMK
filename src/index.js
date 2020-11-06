@@ -5,7 +5,6 @@ require('dotenv').config();
 const imagefetch = require('reddit-image-fetcher');
 const ytdl = require('discord-ytdl-core');
 const search = require('youtube-search');
-var http = require('http');
 
 const prefix = '@';
 const app = express();
@@ -24,10 +23,6 @@ app.get('*',(req,res)=>{
         "message": "Not found!!"
     });
 })
-
-// cron.schedule('*/10 * * * *',()=>{
-//     http.get('https://discord-jmk-bot.herokuapp.com/');
-// })
 
 const client = new Discord.Client();
 client.login(process.env.BOT_TOKEN);
@@ -78,20 +73,25 @@ client.on("message", (message)=>{
 })
 
 client.on('ready',()=>{
-    cron.schedule('00 17 * * *',()=>{
-        console.log('game trigger!');
-        sendGif();
-        sendMessageForAmongUs();
-    })
     cron.schedule('00 05 * * *',()=>{
         console.log('markin trigger!');
         sendGif();
         sendMessageForMarkIn();
     })
+    cron.schedule('00 06 * * *',()=>{
+        console.log('call trigger!');
+        sendGif();
+        sendMessageForCall();
+    })
     cron.schedule('00 14 * * *',()=>{
         console.log('markout trigger!');
         sendGif();
         sendMessageForMarkOut();
+    })
+    cron.schedule('00 17 * * *',()=>{
+        console.log('game trigger!');
+        sendGif();
+        sendMessageForAmongUs();
     })
 })
 
@@ -105,14 +105,21 @@ const sendMessageForAmongUs = async () => {
 const sendMessageForMarkIn = async () => {
     var guild = client.guilds.cache.get('689367318345809920');
     if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("@everyone MARK IN!!!!");
+        guild.channels.cache.get('689367318345809923').send("@everyone This is the right time to MARK IN!");
     }
 }
 
 const sendMessageForMarkOut = async () => {
     var guild = client.guilds.cache.get('689367318345809920');
     if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("@everyone MARK OUT!!!");
+        guild.channels.cache.get('689367318345809923').send("@everyone Maybe you can MARK OUT now?");
+    }
+}
+
+const sendMessageForCall = async () => {
+    var guild = client.guilds.cache.get('689367318345809920');
+    if(guild && guild.channels.cache.get('689367318345809923')){
+        guild.channels.cache.get('689367318345809923').send("Hey it's time for standup! Do you remember the code? Let me help you out - 243319");
     }
 }
 
