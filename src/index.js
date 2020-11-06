@@ -145,7 +145,7 @@ const sendMessageForMarkInOrWeekend = async () => {
         console.log('Weekend!');
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send(`@everyone Even if it's ${dayName}, I hope to see you soon!`);
+            guild.channels.cache.get('689367318345809923').send(`@everyone Even if it's ${day}, I hope to see you soon!`);
         }
     }
     else
