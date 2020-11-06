@@ -17,17 +17,21 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 
-var d = new Date();
-var weekday = new Array(7);
-weekday[0] = "Sunday";
-weekday[1] = "Monday";
-weekday[2] = "Tuesday";
-weekday[3] = "Wednesday";
-weekday[4] = "Thursday";
-weekday[5] = "Friday";
-weekday[6] = "Saturday";
+const getMyDay = () => {
 
-var dayName = weekday[d.getDay()];
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+    var dayName = weekday[d.getDay()];
+
+    return dayName;
+}
 
 app.get('/',(req,res)=>{
     res.json({
@@ -35,7 +39,6 @@ app.get('/',(req,res)=>{
         "time": new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') 
     });
 })
-
 
 app.get('*',(req,res)=>{
     res.json({
@@ -93,63 +96,42 @@ client.on("message", (message)=>{
 
 client.on('ready',()=>{
 
-    if(dayName == 'Saturday' || dayName == 'Sunday')
-    {
-        console.log('Weekend');
-        cron.schedule('00 06 * * *',()=>{
-            console.log('markin trigger!');
-            sendMessageForWeekend();
-        })
-    }
-    else
-    {
-        console.log('Normal day');
-        cron.schedule('00 05 * * *',()=>{
-            console.log('markin trigger!');
-            sendGif();
-            sendMessageForMarkIn();
-        })
-        cron.schedule('00 06 * * *',()=>{
-            console.log('call trigger!');
-            sendMessageForCall();
-        })
-        cron.schedule('00 10 * * *',()=>{
-            console.log('quote trigger!');
-            sendQuote(); 
-        })
-        cron.schedule('00 11 * * *',()=>{
-            console.log('joke trigger!');
-            sendMessageForJoke();
-        })
-        cron.schedule('00 12 * * *',()=>{
-            console.log('fact trigger!');
-            sendMessageForFact();
-        })
-        cron.schedule('00 13 * * *',()=>{
-            console.log('fact trigger!');
-            sendMessageForFact();
-        })
-        cron.schedule('00 14 * * *',()=>{
-            console.log('markout trigger!');
-            sendGif();
-            sendMessageForMarkOut();
-        })
-        cron.schedule('00 17 * * *',()=>{
-            console.log('game trigger!');
-            sendGif();
-            sendMessageForAmongUs();
-        })
-    }
+    cron.schedule('00 05 * * *',()=>{
+        console.log('markin trigger!');
+        sendGif();
+        sendMessageForMarkInOrWeekend();
+    })
+    cron.schedule('00 06 * * *',()=>{
+        console.log('call trigger!');
+        sendMessageForCall();
+    })
+    cron.schedule('00 10 * * *',()=>{
+        console.log('quote trigger!');
+        sendQuote(); 
+    })
+    cron.schedule('00 11 * * *',()=>{
+        console.log('joke trigger!');
+        sendMessageForJoke();
+    })
+    cron.schedule('00 12 * * *',()=>{
+        console.log('fact trigger!');
+        sendMessageForFact();
+    })
+    cron.schedule('00 13 * * *',()=>{
+        console.log('fact trigger!');
+        sendMessageForFact();
+    })
+    cron.schedule('00 14 * * *',()=>{
+        console.log('markout trigger!');
+        sendGif();
+        sendMessageForMarkOut();
+    })
+    cron.schedule('00 17 * * *',()=>{
+        console.log('game trigger!');
+        sendGif();
+        sendMessageForAmongUs();
+    })
 })
-
-
-const sendMessageForWeekend = async () => {
-    var guild = client.guilds.cache.get('689367318345809920');
-    if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send(`@everyone Even if it's ${dayName}, I hope to see you soon!`);
-    }
-}
-
 
 const sendMessageForAmongUs = async () => {
     var guild = client.guilds.cache.get('689367318345809920');
@@ -158,24 +140,53 @@ const sendMessageForAmongUs = async () => {
     }
 }
 
-const sendMessageForMarkIn = async () => {
-    var guild = client.guilds.cache.get('689367318345809920');
-    if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("@everyone This is the right time to MARK IN!");
+const sendMessageForMarkInOrWeekend = async () => {
+    var day = getMyDay();
+    if(day == 'Saturday' || day == 'Sunday')
+    {
+        console.log('Weekend!');
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send(`@everyone Even if it's ${dayName}, I hope to see you soon!`);
+        }
+    }
+    else
+    {
+        console.log('Normal day!');
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send("@everyone This is the right time to MARK IN!");
+        }
     }
 }
 
 const sendMessageForMarkOut = async () => {
-    var guild = client.guilds.cache.get('689367318345809920');
-    if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("@everyone Maybe you can MARK OUT now?");
+    var day = getMyDay();
+    if(day == 'Saturday' || day == 'Sunday')
+    {
+        console.log('Weekend!');
+    }
+    else
+    {
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send("@everyone Maybe you can MARK OUT now.");
+        }
     }
 }
 
 const sendMessageForCall = async () => {
-    var guild = client.guilds.cache.get('689367318345809920');
-    if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("Hey it's time for standup! Do you remember the code? Let me help you out - 243319");
+    var day = getMyDay();
+    if(day == 'Saturday' || day == 'Sunday')
+    {
+        console.log('Weekend!');
+    }
+    else
+    {
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send("Hey it's time for standup! Do you remember the code? Let me help you out - 243319");
+        }
     }
 }
 
@@ -262,5 +273,4 @@ const sendGif = async () => {
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
-
 
