@@ -79,7 +79,7 @@ client.on('ready',()=>{
         sendGif();
         sendMessageForAmongUs();
     })
-    cron.schedule('30 04 * * *',()=>{
+    cron.schedule('00 05 * * *',()=>{
         console.log('markin trigger!');
         sendGif();
         sendMessageForMarkIn();
