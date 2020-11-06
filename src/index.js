@@ -189,64 +189,88 @@ const sendMessageForCall = async () => {
 }
 
 const sendQuote = async () => {
-    var theQuote = await Quote.getQuote();
-    var guild = client.guilds.cache.get('689367318345809920');
-    if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("It's almost half-day! Here's a nice quote for you which might inspire you in some way ~");
-        guild.channels.cache.get('689367318345809923').send(theQuote.text);
-        guild.channels.cache.get('689367318345809923').send("-",theQuote.author);
+    var day = getMyDay();
+    if(day == 'Saturday' || day == 'Sunday')
+    {
+        console.log('Weekend!');
+    }
+    else
+    {
+        var theQuote = await Quote.getQuote();
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send("It's almost half-day! Here's a nice quote for you which might inspire you in some way ~");
+            guild.channels.cache.get('689367318345809923').send(theQuote.text);
+            guild.channels.cache.get('689367318345809923').send("-",theQuote.author);
+        }
     }
 }
 
 const sendMessageForJoke = async () => {
-    var getRandomJoke = oneLinerJoke.getRandomJokeWithTag('flirty');
-    var guild = client.guilds.cache.get('689367318345809920');
-    if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send("Hmm... I can't bear silence. I just came up with a pickup line, hope you'll like it!");
-        guild.channels.cache.get('689367318345809923').send(getRandomJoke.body);
+    var day = getMyDay();
+    if(day == 'Saturday' || day == 'Sunday')
+    {
+        console.log('Weekend!');
+    }
+    else
+    {
+        var getRandomJoke = oneLinerJoke.getRandomJokeWithTag('flirty');
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send("Hmm... I can't bear silence. I just came up with a pickup line, hope you'll like it!");
+            guild.channels.cache.get('689367318345809923').send(getRandomJoke.body);
+        }
     }
 }
 
 const sendMessageForFact = async () => {
-    var guild = client.guilds.cache.get('689367318345809920');
-    let types = ['space', 'covid', 'computer', 'food'];
-    var numb = Math.floor(Math.random() * 4); 
-    var myType = types[numb]; 
-    let finalType = `facts.${myType}`;
-    console.log(finalType);
-    if(finalType == 'facts.covid')
+    var day = getMyDay();
+    if(day == 'Saturday' || day == 'Sunday')
     {
-        console.log('cov');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("Here's a random covid19 fact for you!");
-            guild.channels.cache.get('689367318345809923').send(facts.covid);
-        }
-
+        console.log('Weekend!');
     }
-    if(finalType == 'facts.computer')
+    else
     {
-        console.log('computer');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("Here's a random computer fact for you!");
-            guild.channels.cache.get('689367318345809923').send(facts.computer);
-        }
+        var guild = client.guilds.cache.get('689367318345809920');
+        let types = ['space', 'covid', 'computer', 'food'];
+        var numb = Math.floor(Math.random() * 4); 
+        var myType = types[numb]; 
+        let finalType = `facts.${myType}`;
+        console.log(finalType);
+        if(finalType == 'facts.covid')
+        {
+            console.log('cov');
+            if(guild && guild.channels.cache.get('689367318345809923')){
+                guild.channels.cache.get('689367318345809923').send("Here's a random covid19 fact for you!");
+                guild.channels.cache.get('689367318345809923').send(facts.covid);
+            }
 
-    }
-    if(finalType == 'facts.space')
-    {
-        console.log('space');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("Here's a random space fact for you!");
-            guild.channels.cache.get('689367318345809923').send(facts.space);
         }
+        if(finalType == 'facts.computer')
+        {
+            console.log('computer');
+            if(guild && guild.channels.cache.get('689367318345809923')){
+                guild.channels.cache.get('689367318345809923').send("Here's a random computer fact for you!");
+                guild.channels.cache.get('689367318345809923').send(facts.computer);
+            }
 
-    }
-    if(finalType == 'facts.food')
-    {
-        console.log('food');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("Here's a random food fact for you!");
-            guild.channels.cache.get('689367318345809923').send(facts.food);
+        }
+        if(finalType == 'facts.space')
+        {
+            console.log('space');
+            if(guild && guild.channels.cache.get('689367318345809923')){
+                guild.channels.cache.get('689367318345809923').send("Here's a random space fact for you!");
+                guild.channels.cache.get('689367318345809923').send(facts.space);
+            }
+
+        }
+        if(finalType == 'facts.food')
+        {
+            console.log('food');
+            if(guild && guild.channels.cache.get('689367318345809923')){
+                guild.channels.cache.get('689367318345809923').send("Here's a random food fact for you!");
+                guild.channels.cache.get('689367318345809923').send(facts.food);
+            }
         }
     }
 }
