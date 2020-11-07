@@ -133,11 +133,18 @@ client.on('ready',()=>{
 
 const sendMessageForAmongUs = async () => {
     var day = getMyDay();
-    if(day == 'Saturday' || day == 'Sunday')
+    if(day == 'Saturday')
     {
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send(`@everyone Hey it's ${day}! It's time for Among us!`);
+            guild.channels.cache.get('689367318345809923').send(`@everyone Hey it's ${day}! Who's up for Among us?`);
+        }
+    }
+    else if(day == 'Sunday')
+    {
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send(`@everyone Hey it's ${day}! I know you gotta get up early tomorrow but there's always time for Among us!`);
         }
     }
     else if(day == 'Friday')
@@ -158,12 +165,20 @@ const sendMessageForAmongUs = async () => {
 
 const sendMessageForMarkInOrWeekend = async () => {
     var day = getMyDay();
-    if(day == 'Saturday' || day == 'Sunday')
+    if(day == 'Saturday')
     {
         console.log('Weekend!');
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
             guild.channels.cache.get('689367318345809923').send(`@everyone Even if it's ${day}, I hope to see you soon!`);
+        }
+    }
+    else if(day == 'Sunday')
+    {
+        console.log('Weekend!');
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send(`@everyone -yawns- Good morning everyone! Happy ${day}!`);
         }
     }
     else
