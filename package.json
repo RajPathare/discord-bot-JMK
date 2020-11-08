@@ -24,6 +24,7 @@
     "node-cron": "^2.0.3",
     "one-liner-joke": "^1.2.0",
     "reddit-image-fetcher": "^2.0.3",
+    "wolfram-alpha-node": "0.0.3",
     "youtube-search": "^1.1.4"
   }
 }

@@ -8,7 +8,8 @@ const search = require('youtube-search');
 var Quote = require('inspirational-quotes');
 var oneLinerJoke = require('one-liner-joke');
 const factful = require('factful.js');
-
+const WolframAlphaAPI = require('wolfram-alpha-node');
+const waApi = WolframAlphaAPI(process.env.WOLFRAM_API_KEY);
 
 const facts = factful.fact();
 
@@ -49,15 +50,35 @@ app.get('*',(req,res)=>{
 const client = new Discord.Client();
 client.login(process.env.BOT_TOKEN);
 
-client.on("message", (message)=>{
+client.on("message", async (message)=>{
     if(message.author.bot) return;
     if(!message.content.startsWith(prefix)) return;
 
     const commandBody = message.content.slice(prefix.length);
     const args = commandBody.split(' ');
-    console.log(args);
-    if (args[0] === "play") {
-        console.log('invoked play')
+    console.log('ARGS:',args);
+    if(args[0] === "ask")
+    {
+        console.log('question invoked');
+        try
+        {
+            let myQuestion = args;
+            myQuestion.shift();
+            myQuestion = myQuestion.join(' ');
+
+            let resp = await waApi.getShort(myQuestion);
+            console.log(resp);
+            message.channel.send(resp);
+        }
+        catch (e)
+        {
+            console.log(e.message);
+            message.channel.send("Hmm... I don't understand your question :( ");
+        }
+
+    }
+    else if (args[0] === "play") {
+        console.log('invoked play');
         if (!message.member.voice.channel) return message.channel.send("You're not in a voice channel?");
 
         let songName = args
