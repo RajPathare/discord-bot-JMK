@@ -10,3 +10,8 @@ A personal discord chatbot
 - Plays songs on discord.
 - Fetches a random meme from reddit, just for fun!
 - Sends a random joke everyday.
+
+### Screenshots
+
+![ss1](screenshots/ss1.png)
+![ss2](screenshots/ss2.png)
