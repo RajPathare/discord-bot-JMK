@@ -59,22 +59,31 @@ client.on("message", async (message)=>{
     console.log('ARGS:',args);
     if(args[0] === "ask")
     {
-        console.log('question invoked');
-        try
+        if(args[1] === undefined)
         {
-            let myQuestion = args;
-            myQuestion.shift();
-            myQuestion = myQuestion.join(' ');
-
-            let resp = await waApi.getShort(myQuestion);
-            console.log(resp);
-            message.channel.send(resp);
+            console.log('ask me something!');
+            message.channel.send("Ask me something! :)");
         }
-        catch (e)
+        else
         {
-            console.log(e.message);
-            message.channel.send("Hmm... I don't understand your question :( ");
+            console.log('question invoked');
+            try
+            {
+                let myQuestion = args;
+                myQuestion.shift();
+                myQuestion = myQuestion.join(' ');
+    
+                let resp = await waApi.getShort(myQuestion);
+                console.log(resp);
+                message.channel.send(resp);
+            }
+            catch (e)
+            {
+                console.log(e.message);
+                message.channel.send("Hmm... I don't understand your question :( ");
+            }
         }
+       
 
     }
     else if (args[0] === "play") {
