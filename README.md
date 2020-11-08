@@ -13,5 +13,5 @@ A personal discord chatbot
 
 ### Screenshots
 
-![ss1](screenshots/ss1.png)
-![ss2](screenshots/ss2.png)
+![ss1](screenshots/first.png)
+![ss2](screenshots/second.png)
