@@ -120,6 +120,7 @@ const sendQuote = async (client) => {
     else
     {
         var theQuote = await Quote.getQuote();
+        console.log(theQuote);
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
             guild.channels.cache.get('689367318345809923').send("It's almost half-day! Here's a nice quote for you which might inspire you in some way ~");
@@ -138,6 +139,7 @@ const sendMessageForJoke = async (client) => {
     else
     {
         var getRandomJoke = oneLinerJoke.getRandomJokeWithTag('flirty');
+        console.log(getRandomJoke);
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
             guild.channels.cache.get('689367318345809923').send("Hmm... I can't bear silence. I just came up with a pickup line, hope you'll like it!");
