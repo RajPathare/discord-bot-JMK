@@ -61,7 +61,7 @@ client.on('ready',()=>{
         console.log('call trigger!');
         sendMessageForCall(client);
     })
-    cron.schedule('30 06 * * *',()=>{
+    cron.schedule('45 06 * * *',()=>{
         console.log('feature trigger');
         sendMessageForFeature(client);
     })
