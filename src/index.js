@@ -56,6 +56,13 @@ client.on('ready',()=>{
         console.log('markin trigger!');
         sendMessageForMarkInOrWeekend();
     })
+    cron.schedule('30 05 * * *',()=>{
+        console.log('call trigger!');
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send('test message!');
+        }
+    })
     cron.schedule('00 06 * * *',()=>{
         console.log('call trigger!');
         sendMessageForCall();
