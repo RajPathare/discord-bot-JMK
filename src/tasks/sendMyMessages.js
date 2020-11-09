@@ -5,6 +5,12 @@ const factful = require('factful.js');
 const getMyDay = require('./getDay');
 const facts = factful.fact();
 
+const testMessage = () => {
+    var guild = client.guilds.cache.get('689367318345809920');
+    if(guild && guild.channels.cache.get('689367318345809923')){
+        guild.channels.cache.get('689367318345809923').send('test message!');
+    }
+}
 
 const sendMessageForAmongUs = async () => {
     var day = getMyDay();
@@ -209,5 +215,6 @@ module.exports = {
     sendQuote,
     sendMessageForJoke,
     sendMessageForFact,
-    sendGif
+    sendGif,
+    testMessage
 }
