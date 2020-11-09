@@ -8,7 +8,7 @@ const imagefetch = require('reddit-image-fetcher');
 var Quote = require('inspirational-quotes');
 var oneLinerJoke = require('one-liner-joke');
 const factful = require('factful.js');
-const getMyDay = require('./getDay');
+const getMyDay = require('./tasks/getDay');
 const facts = factful.fact();
 
 const wolframAPI = require('./tasks/wolframAPI');
