@@ -60,7 +60,7 @@ const sendMessageForMarkInOrWeekend = async (client) => {
         console.log('Normal day!');
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("@everyone This is the right time to MARK IN!");
+            guild.channels.cache.get('689367318345809923').send("@everyone This is the right time to mark in!");
         }
     }
 }
@@ -75,7 +75,7 @@ const sendMessageForMarkOut = async (client) => {
     {
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("@everyone Maybe you can MARK OUT now.");
+            guild.channels.cache.get('689367318345809923').send("@everyone Maybe you can mark out now.");
         }
     }
 }
