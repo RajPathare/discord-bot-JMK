@@ -52,14 +52,14 @@ client.on("message", async (message)=>{
     
 })
 
-client.on('ready',()=>{
+client.on('ready',(client)=>{
     cron.schedule('15 05 * * *',()=>{
         console.log('markin trigger!');
         sendMessageForMarkInOrWeekend();
     })
-    cron.schedule('30 05 * * *',()=>{
+    cron.schedule('33 05 * * *',()=>{
         console.log('test message');
-        testMessage();
+        testMessage(client);
     })
     cron.schedule('00 06 * * *',()=>{
         console.log('call trigger!');
