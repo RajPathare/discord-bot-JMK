@@ -5,14 +5,7 @@ const factful = require('factful.js');
 const getMyDay = require('./getDay');
 const facts = factful.fact();
 
-const testMessage = (client) => {
-    var guild = client.guilds.cache.get('689367318345809920');
-    if(guild && guild.channels.cache.get('689367318345809923')){
-        guild.channels.cache.get('689367318345809923').send('test message!');
-    }
-}
-
-const sendMessageForAmongUs = async () => {
+const sendMessageForAmongUs = async (client) => {
     var day = getMyDay();
     if(day == 'Saturday')
     {
@@ -44,7 +37,7 @@ const sendMessageForAmongUs = async () => {
     }
 }
 
-const sendMessageForMarkInOrWeekend = async () => {
+const sendMessageForMarkInOrWeekend = async (client) => {
     var day = getMyDay();
     if(day == 'Saturday')
     {
@@ -72,7 +65,7 @@ const sendMessageForMarkInOrWeekend = async () => {
     }
 }
 
-const sendMessageForMarkOut = async () => {
+const sendMessageForMarkOut = async (client) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
     {
@@ -87,7 +80,7 @@ const sendMessageForMarkOut = async () => {
     }
 }
 
-const sendMessageForCall = async () => {
+const sendMessageForCall = async (client) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
     {
@@ -102,7 +95,7 @@ const sendMessageForCall = async () => {
     }
 }
 
-const sendQuote = async () => {
+const sendQuote = async (client) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
     {
@@ -120,7 +113,7 @@ const sendQuote = async () => {
     }
 }
 
-const sendMessageForJoke = async () => {
+const sendMessageForJoke = async (client) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
     {
@@ -137,7 +130,7 @@ const sendMessageForJoke = async () => {
     }
 }
 
-const sendMessageForFact = async () => {
+const sendMessageForFact = async (client) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
     {
@@ -189,7 +182,7 @@ const sendMessageForFact = async () => {
     }
 }
 
-const sendGif = async () => {
+const sendGif = async (client) => {
 
     imagefetch.fetch({
         type: 'meme',
@@ -215,6 +208,5 @@ module.exports = {
     sendQuote,
     sendMessageForJoke,
     sendMessageForFact,
-    sendGif,
-    testMessage
+    sendGif
 }

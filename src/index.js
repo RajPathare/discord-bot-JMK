@@ -5,15 +5,14 @@ var cron = require('node-cron');
 
 const wolframAPI = require('./tasks/wolframAPI');
 const playMusic = require('./tasks/playMusic');
-const {sendMessageForAmongUs,
+const { sendMessageForAmongUs,
     sendMessageForMarkInOrWeekend,
     sendMessageForMarkOut,
     sendMessageForCall,
     sendQuote,
     sendMessageForJoke,
     sendMessageForFact,
-    sendGif,
-    testMessage} = require('./tasks/sendMyMessages');
+    sendGif } = require('./tasks/sendMyMessages');
 
 const prefix = '@';
 const app = express();
@@ -55,40 +54,36 @@ client.on("message", async (message)=>{
 client.on('ready',()=>{
     cron.schedule('15 05 * * *',()=>{
         console.log('markin trigger!');
-        sendMessageForMarkInOrWeekend();
-    })
-    cron.schedule('40 05 * * *',()=>{
-        console.log('test message');
-        testMessage(client);
+        sendMessageForMarkInOrWeekend(client);
     })
     cron.schedule('00 06 * * *',()=>{
         console.log('call trigger!');
-        sendMessageForCall();
+        sendMessageForCall(client);
     })
     cron.schedule('00 10 * * *',()=>{
         console.log('quote trigger!');
-        sendQuote(); 
+        sendQuote(client); 
     })
     cron.schedule('00 11 * * *',()=>{
         console.log('joke trigger!');
-        sendMessageForJoke();
+        sendMessageForJoke(client);
     })
     cron.schedule('00 12 * * *',()=>{
         console.log('fact trigger!');
-        sendMessageForFact();
+        sendMessageForFact(client);
     })
     cron.schedule('00 13 * * *',()=>{
         console.log('fact trigger!');
-        sendMessageForFact();
+        sendMessageForFact(client);
     })
     cron.schedule('00 14 * * *',()=>{
         console.log('markout trigger!');
-        sendMessageForMarkOut();
+        sendMessageForMarkOut(client);
     })
     cron.schedule('30 16 * * *',()=>{
         console.log('game trigger!');
-        sendGif();
-        sendMessageForAmongUs();
+        sendGif(client);
+        sendMessageForAmongUs(client);
     })
 })
 
