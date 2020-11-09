@@ -5,6 +5,22 @@ const factful = require('factful.js');
 const getMyDay = require('./getDay');
 const facts = factful.fact();
 
+
+const sendMessageForFeature = async (client) => {
+    var day = getMyDay();
+    if(day == 'Saturday' || day == 'Sunday')
+    {
+        console.log('Weekend!');
+    }
+    else
+    {
+        var guild = client.guilds.cache.get('689367318345809920');
+        if(guild && guild.channels.cache.get('689367318345809923')){
+            guild.channels.cache.get('689367318345809923').send("Do you know? I love reading books! Try asking me some questions using the @ask command! I'll try answering all of your questions :smirk_cat: ");
+        }
+    }
+}
+
 const sendMessageForAmongUs = async (client) => {
     var day = getMyDay();
     if(day == 'Saturday')
@@ -208,5 +224,6 @@ module.exports = {
     sendQuote,
     sendMessageForJoke,
     sendMessageForFact,
-    sendGif
+    sendGif,
+    sendMessageForFeature
 }

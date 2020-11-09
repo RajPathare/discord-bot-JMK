@@ -12,7 +12,8 @@ const { sendMessageForAmongUs,
     sendQuote,
     sendMessageForJoke,
     sendMessageForFact,
-    sendGif } = require('./tasks/sendMyMessages');
+    sendGif,
+    sendMessageForFeature } = require('./tasks/sendMyMessages');
 
 const prefix = '@';
 const app = express();
@@ -59,6 +60,10 @@ client.on('ready',()=>{
     cron.schedule('00 06 * * *',()=>{
         console.log('call trigger!');
         sendMessageForCall(client);
+    })
+    cron.schedule('30 06 * * *',()=>{
+        console.log('feature trigger');
+        sendMessageForFeature(client);
     })
     cron.schedule('00 10 * * *',()=>{
         console.log('quote trigger!');
