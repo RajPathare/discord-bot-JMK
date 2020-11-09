@@ -2,6 +2,15 @@ const Discord = require('discord.js');
 const express = require('express');
 require('dotenv').config();
 
+
+var cron = require('node-cron');
+const imagefetch = require('reddit-image-fetcher');
+var Quote = require('inspirational-quotes');
+var oneLinerJoke = require('one-liner-joke');
+const factful = require('factful.js');
+const getMyDay = require('./getDay');
+const facts = factful.fact();
+
 const wolframAPI = require('./tasks/wolframAPI');
 const playMusic = require('./tasks/playMusic');
 
