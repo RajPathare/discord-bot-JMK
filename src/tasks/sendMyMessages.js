@@ -157,20 +157,11 @@ const sendMessageForFact = async (client) => {
     else
     {
         var guild = client.guilds.cache.get('689367318345809920');
-        let types = ['space', 'covid', 'computer', 'food'];
+        let types = ['space', 'computer', 'food'];
         var numb = Math.floor(Math.random() * 4); 
         var myType = types[numb]; 
         let finalType = `facts.${myType}`;
         console.log(finalType);
-        if(finalType == 'facts.covid')
-        {
-            console.log('cov');
-            if(guild && guild.channels.cache.get('689367318345809923')){
-                guild.channels.cache.get('689367318345809923').send("Here's a random covid19 fact for you!");
-                guild.channels.cache.get('689367318345809923').send(facts.covid);
-            }
-
-        }
         if(finalType == 'facts.computer')
         {
             console.log('computer');
