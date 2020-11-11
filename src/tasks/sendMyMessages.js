@@ -125,7 +125,7 @@ const sendQuote = async (client) => {
         if(guild && guild.channels.cache.get('689367318345809923')){
             guild.channels.cache.get('689367318345809923').send("It's almost half-day! Here's a nice quote for you which might inspire you in some way ~");
             guild.channels.cache.get('689367318345809923').send(theQuote.text);
-            guild.channels.cache.get('689367318345809923').send("-",theQuote.author);
+            guild.channels.cache.get('689367318345809923').send(` - ${theQuote.author}`);
         }
     }
 }

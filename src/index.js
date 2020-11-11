@@ -65,7 +65,7 @@ client.on('ready',()=>{
         console.log('feature trigger');
         sendMessageForFeature(client);
     })
-    cron.schedule('00 10 * * *',()=>{
+    cron.schedule('15 10 * * *',()=>{
         console.log('quote trigger!');
         sendQuote(client); 
     })
