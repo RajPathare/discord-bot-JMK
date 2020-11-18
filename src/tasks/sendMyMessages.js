@@ -157,7 +157,7 @@ const sendMessageForFact = async (client) => {
     else
     {
         var guild = client.guilds.cache.get('689367318345809920');
-        let types = ['space', 'computer', 'food'];
+        let types = ['space', 'computer'];
         var numb = Math.floor(Math.random() * 4); 
         var myType = types[numb]; 
         let finalType = `facts.${myType}`;
@@ -179,14 +179,6 @@ const sendMessageForFact = async (client) => {
                 guild.channels.cache.get('689367318345809923').send(facts.space);
             }
 
-        }
-        if(finalType == 'facts.food')
-        {
-            console.log('food');
-            if(guild && guild.channels.cache.get('689367318345809923')){
-                guild.channels.cache.get('689367318345809923').send("Here's a random food fact for you!");
-                guild.channels.cache.get('689367318345809923').send(facts.food);
-            }
         }
     }
 }
