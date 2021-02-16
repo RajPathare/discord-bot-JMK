@@ -21,34 +21,34 @@ const sendMessageForFeature = async (client) => {
     }
 }
 
-const sendMessageForAmongUs = async (client) => {
+const sendMessageForMiniMilitia = async (client) => {
     var day = getMyDay();
     if(day == 'Saturday')
     {
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send(`@everyone Hey it's ${day}! Who's up for Among us?`);
+            guild.channels.cache.get('689367318345809923').send(`@everyone Hey it's ${day}! Who's up for Mini Militia?`);
         }
     }
     else if(day == 'Sunday')
     {
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send(`@everyone Hey it's ${day}! I know you gotta get up early tomorrow but there's always time for Among us!`);
+            guild.channels.cache.get('689367318345809923').send(`@everyone Hey it's ${day}! I know you gotta get up early tomorrow but there's always time for Mini Militia!`);
         }
     }
     else if(day == 'Friday')
     {
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send(`@everyone Finally it's ${day}! We gotta play Among us!!`);
+            guild.channels.cache.get('689367318345809923').send(`@everyone Finally it's ${day}! We gotta play Mini Militia!!`);
         }
     }
     else
     {
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("@everyone Among us anyone?");
+            guild.channels.cache.get('689367318345809923').send("@everyone Mini Militia anyone?");
         }
     }
 }
@@ -202,7 +202,7 @@ const sendGif = async (client) => {
 
 
 module.exports = {
-    sendMessageForAmongUs,
+    sendMessageForMiniMilitia,
     sendMessageForMarkInOrWeekend,
     sendMessageForMarkOut,
     sendMessageForCall,
