@@ -16,7 +16,8 @@ const sendMessageForFeature = async (client) => {
     {
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("Do you know? I love reading books! Try asking me some questions using the ask command! I'll try answering all of your questions :smirk_cat: ");
+            guild.channels.cache.get('689367318345809923').send("Do you know? I can now talk in most of the languages! I'll try translating your sentence if you do this - ");
+            guild.channels.cache.get('689367318345809923').send("@translate <Sentence> <language code (Please check ISO for the languange on Google! :P)>");
         }
     }
 }

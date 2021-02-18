@@ -5,6 +5,7 @@ var cron = require('node-cron');
 
 const wolframAPI = require('./tasks/wolframAPI');
 const playMusic = require('./tasks/playMusic');
+const translateMyText = require('./tasks/translateMyText');
 const { sendMessageForMiniMilitia,
     sendMessageForMarkInOrWeekend,
     sendMessageForMarkOut,
@@ -49,10 +50,19 @@ client.on("message", async (message)=>{
     else if (args[0] === "play") {
         playMusic(args,message);
     }
+    else if (args[0] === "translate") {
+
+        console.log("ISO code:", args[args.length-1]);
+        const ISO = args[args.length-1];
+        args.pop(args.length-1);
+        translateMyText(args,message,ISO);
+    }
     
 })
 
 client.on('ready',()=>{
+
+
     cron.schedule('00 05 * * *',()=>{
         console.log('markin trigger!');
         sendMessageForMarkInOrWeekend(client);
@@ -61,10 +71,10 @@ client.on('ready',()=>{
         console.log('call trigger!');
         sendMessageForCall(client);
     })
-    // cron.schedule('45 06 * * *',()=>{
-    //     console.log('feature trigger');
-    //     sendMessageForFeature(client);
-    // })
+    cron.schedule('45 06 * * *',()=>{
+        console.log('feature trigger');
+        sendMessageForFeature(client);
+    })
     cron.schedule('15 10 * * *',()=>{
         console.log('quote trigger!');
         sendQuote(client); 
