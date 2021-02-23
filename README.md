@@ -10,6 +10,7 @@ A personal discord chatbot
 - Plays songs on discord.
 - Fetches a random meme from reddit, just for fun!
 - Sends a random joke everyday.
+- Translates your text to any specified language.
 
 ### Screenshots
 
