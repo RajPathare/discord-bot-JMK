@@ -103,12 +103,15 @@ const sendMessageForCall = async (client) => {
     {
         console.log('Weekend!');
     }
-    else
+    else if(day == 'Monday' || day == 'Thursday')
     {
         var guild = client.guilds.cache.get('689367318345809920');
         if(guild && guild.channels.cache.get('689367318345809923')){
             guild.channels.cache.get('689367318345809923').send("Hey it's time for standup! Do you remember the code? Let me help you out - 243319");
         }
+    }
+    else {
+        console.log('No message!');
     }
 }
 
