@@ -65,7 +65,6 @@ client.on('ready',()=>{
     console.log('ready!');
 
     const channel = client.channels.cache.find(channel => channel.name === "general")
-    channel.send("test");
 
     cron.schedule('00 05 * * *',()=>{
         console.log('markin trigger!');
