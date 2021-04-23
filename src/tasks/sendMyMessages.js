@@ -6,7 +6,7 @@ const getMyDay = require('./getDay');
 const facts = factful.fact();
 
 
-const sendMessageForFeature = async (client) => {
+const sendMessageForFeature = async (client, channel) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
     {
@@ -14,75 +14,53 @@ const sendMessageForFeature = async (client) => {
     }
     else
     {
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("Do you know? I can now talk in most of the languages! I'll try translating whatever you say!");
-            guild.channels.cache.get('689367318345809923').send("Try doing this - @translate hello marathi");
-        }
+        channel.send("Do you know? I can now talk in most of the languages! I'll try translating whatever you say!");
+        channel.send("Try doing this - @translate hello marathi");
     }
 }
 
-const sendMessageForMiniMilitia = async (client) => {
+const sendMessageForMiniMilitia = async (client, channel) => {
     var day = getMyDay();
     if(day == 'Saturday')
     {
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send(`@everyone Hey it's ${day}! Who's up for Mini Militia?`);
-        }
+        channel.send(`@everyone Hey it's ${day}! Who's up for Mini Militia?`);
     }
     else if(day == 'Sunday')
     {
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send(`@everyone Hey it's ${day}! I know you gotta get up early tomorrow but there's always time for Mini Militia!`);
-        }
+        
+        channel.send(`@everyone Hey it's ${day}! I know you gotta get up early tomorrow but there's always time for Mini Militia!`);
     }
     else if(day == 'Friday')
     {
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send(`@everyone Finally it's ${day}! We gotta play Mini Militia!!`);
-        }
+       
+        channel.send(`@everyone Finally it's ${day}! We gotta play Mini Militia!!`);
     }
     else
     {
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("@everyone Mini Militia anyone?");
-        }
+        channel.send("@everyone Mini Militia anyone?");
     }
 }
 
-const sendMessageForMarkInOrWeekend = async (client) => {
+const sendMessageForMarkInOrWeekend = async (client, channel) => {
     var day = getMyDay();
     if(day == 'Saturday')
     {
         console.log('Weekend!');
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send(`@everyone Even if it's ${day}, I hope to see you soon!`);
-        }
+        channel.send(`@everyone Even if it's ${day}, I hope to see you soon!`);
     }
     else if(day == 'Sunday')
     {
         console.log('Weekend!');
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send(`@everyone -yawns- Good morning everyone! Happy ${day}!`);
-        }
+        channel.send(`@everyone -yawns- Good morning everyone! Happy ${day}!`);
     }
     else
     {
         console.log('Normal day!');
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("@everyone This is the right time to mark in!");
-        }
+        channel.send("@everyone This is the right time to mark in!");
     }
 }
 
-const sendMessageForMarkOut = async (client) => {
+const sendMessageForMarkOut = async (client, channel) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
     {
@@ -90,14 +68,11 @@ const sendMessageForMarkOut = async (client) => {
     }
     else
     {
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("@everyone Maybe you can mark out now.");
-        }
+        channel.send("@everyone Maybe you can mark out now.");
     }
 }
 
-const sendMessageForCall = async (client) => {
+const sendMessageForCall = async (client, channel) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
     {
@@ -105,17 +80,14 @@ const sendMessageForCall = async (client) => {
     }
     else if(day == 'Monday' || day == 'Thursday')
     {
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("Hey it's time for standup! Do you remember the code? Let me help you out - 243319");
-        }
+       channel.send("Hey it's time for standup! Do you remember the code? Let me help you out - 243319");
     }
     else {
         console.log('No message!');
     }
 }
 
-const sendQuote = async (client) => {
+const sendQuote = async (client, channel) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
     {
@@ -125,16 +97,13 @@ const sendQuote = async (client) => {
     {
         var theQuote = await Quote.getQuote();
         console.log(theQuote);
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("It's almost half-day! Here's a nice quote for you which might inspire you in some way ~");
-            guild.channels.cache.get('689367318345809923').send(theQuote.text);
-            guild.channels.cache.get('689367318345809923').send(` - ${theQuote.author}`);
-        }
+        channel.send("It's almost half-day! Here's a nice quote for you which might inspire you in some way ~");
+        channel.send(theQuote.text);
+        channel.send(` - ${theQuote.author}`);
     }
 }
 
-const sendMessageForJoke = async (client) => {
+const sendMessageForJoke = async (client, channel) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
     {
@@ -144,15 +113,12 @@ const sendMessageForJoke = async (client) => {
     {
         var getRandomJoke = oneLinerJoke.getRandomJokeWithTag('flirty');
         console.log(getRandomJoke);
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send("Hmm... I can't bear silence. I just came up with a pickup line, hope you'll like it!");
-            guild.channels.cache.get('689367318345809923').send(getRandomJoke.body);
-        }
+        channel.send("Hmm... I can't bear silence. I just came up with a pickup line, hope you'll like it!");
+        channel.send(getRandomJoke.body);
     }
 }
 
-const sendMessageForFact = async (client) => {
+const sendMessageForFact = async (client, channel) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
     {
@@ -169,25 +135,20 @@ const sendMessageForFact = async (client) => {
         if(finalType == 'facts.computer')
         {
             console.log('computer');
-            if(guild && guild.channels.cache.get('689367318345809923')){
-                guild.channels.cache.get('689367318345809923').send("Here's a random computer fact for you!");
-                guild.channels.cache.get('689367318345809923').send(facts.computer);
-            }
+            channel.send("Here's a random computer fact for you!");
+            channel.send(facts.computer);
 
         }
         if(finalType == 'facts.space')
         {
             console.log('space');
-            if(guild && guild.channels.cache.get('689367318345809923')){
-                guild.channels.cache.get('689367318345809923').send("Here's a random space fact for you!");
-                guild.channels.cache.get('689367318345809923').send(facts.space);
-            }
-
+            channel.send("Here's a random space fact for you!");
+            channel.send(facts.space);
         }
     }
 }
 
-const sendGif = async (client) => {
+const sendGif = async (client, channel) => {
 
     imagefetch.fetch({
         type: 'meme',
@@ -197,10 +158,7 @@ const sendGif = async (client) => {
     }).then(result => {
         console.log(result[0].image) 
         let attachment = new Discord.MessageAttachment(result[0].image);
-        var guild = client.guilds.cache.get('689367318345809920');
-        if(guild && guild.channels.cache.get('689367318345809923')){
-            guild.channels.cache.get('689367318345809923').send(attachment);
-        }
+        channel.send(attachment);
     });
 }
 

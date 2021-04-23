@@ -62,43 +62,46 @@ client.on("message", async (message)=>{
 
 client.on('ready',()=>{
 
+    console.log('ready!');
+
+    const channel = client.channels.cache.find(channel => channel.name === "general")
 
     cron.schedule('00 05 * * *',()=>{
         console.log('markin trigger!');
-        sendMessageForMarkInOrWeekend(client);
+        sendMessageForMarkInOrWeekend(client, channel);
     })
     cron.schedule('00 06 * * *',()=>{
         console.log('call trigger!');
-        sendMessageForCall(client);
+        sendMessageForCall(client, channel);
     })
     cron.schedule('45 06 * * *',()=>{
         console.log('feature trigger');
-        sendMessageForFeature(client);
+        sendMessageForFeature(client, channel);
     })
     cron.schedule('15 10 * * *',()=>{
         console.log('quote trigger!');
-        sendQuote(client); 
+        sendQuote(client, channel); 
     })
     cron.schedule('00 11 * * *',()=>{
         console.log('joke trigger!');
-        sendMessageForJoke(client);
+        sendMessageForJoke(client, channel);
     })
     cron.schedule('00 12 * * *',()=>{
         console.log('fact trigger!');
-        sendMessageForFact(client);
+        sendMessageForFact(client, channel);
     })
     cron.schedule('00 13 * * *',()=>{
         console.log('fact trigger!');
-        sendMessageForFact(client);
+        sendMessageForFact(client, channel);
     })
     cron.schedule('00 14 * * *',()=>{
         console.log('markout trigger!');
-        sendMessageForMarkOut(client);
+        sendMessageForMarkOut(client, channel);
     })
     cron.schedule('30 16 * * *',()=>{
         console.log('game trigger!');
         sendGif(client);
-        sendMessageForMiniMilitia(client);
+        sendMessageForMiniMilitia(client, channel);
     })
 })
 
