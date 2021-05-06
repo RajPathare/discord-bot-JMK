@@ -70,7 +70,7 @@ client.on('ready',()=>{
         console.log('markin trigger!');
         sendMessageForMarkInOrWeekend(client, channel);
     })
-    cron.schedule('00 06 * * *',()=>{
+    cron.schedule('30 06 * * *',()=>{
         console.log('call trigger!');
         sendMessageForCall(client, channel);
     })
