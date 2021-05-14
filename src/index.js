@@ -6,7 +6,7 @@ var cron = require('node-cron');
 const wolframAPI = require('./tasks/wolframAPI');
 const playMusic = require('./tasks/playMusic');
 const translateMyText = require('./tasks/translateMyText');
-const { sendMessageForMiniMilitia,
+const { sendMessageForCOD,
     sendMessageForMarkInOrWeekend,
     sendMessageForMarkOut,
     sendMessageForCall,
@@ -74,10 +74,10 @@ client.on('ready',()=>{
         console.log('call trigger!');
         sendMessageForCall(client, channel);
     })
-    cron.schedule('45 06 * * *',()=>{
-        console.log('feature trigger');
-        sendMessageForFeature(client, channel);
-    })
+    // cron.schedule('45 06 * * *',()=>{
+    //     console.log('feature trigger');
+    //     sendMessageForFeature(client, channel);
+    // })
     cron.schedule('15 10 * * *',()=>{
         console.log('quote trigger!');
         sendQuote(client, channel); 
@@ -101,7 +101,7 @@ client.on('ready',()=>{
     cron.schedule('30 16 * * *',()=>{
         console.log('game trigger!');
         sendGif(client);
-        sendMessageForMiniMilitia(client, channel);
+        sendMessageForCOD(client, channel);
     })
 })
 
