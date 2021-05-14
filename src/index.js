@@ -74,10 +74,10 @@ client.on('ready',()=>{
         console.log('call trigger!');
         sendMessageForCall(client, channel);
     })
-    cron.schedule('45 06 * * *',()=>{
-        console.log('feature trigger');
-        sendMessageForFeature(client, channel);
-    })
+    // cron.schedule('45 06 * * *',()=>{
+    //     console.log('feature trigger');
+    //     sendMessageForFeature(client, channel);
+    // })
     cron.schedule('15 10 * * *',()=>{
         console.log('quote trigger!');
         sendQuote(client, channel); 
