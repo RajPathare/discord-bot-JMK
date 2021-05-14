@@ -19,25 +19,25 @@ const sendMessageForFeature = async (client, channel) => {
     }
 }
 
-const sendMessageForMiniMilitia = async (client, channel) => {
+const sendMessageForCOD = async (client, channel) => {
     var day = getMyDay();
     if(day == 'Saturday')
     {
-        channel.send(`@everyone Hey it's ${day}! Who's up for Mini Militia?`);
+        channel.send(`@everyone Hey it's ${day}! Who's up for COD?`);
     }
     else if(day == 'Sunday')
     {
         
-        channel.send(`@everyone Hey it's ${day}! I know you gotta get up early tomorrow but there's always time for Mini Militia!`);
+        channel.send(`@everyone Hey it's ${day}! I know you gotta get up early tomorrow but there's always time for COD!`);
     }
     else if(day == 'Friday')
     {
        
-        channel.send(`@everyone Finally it's ${day}! We gotta play Mini Militia!!`);
+        channel.send(`@everyone Finally it's ${day}! We gotta play COD!`);
     }
     else
     {
-        channel.send("@everyone Mini Militia anyone?");
+        channel.send("@everyone COD anyone?");
     }
 }
 
@@ -164,7 +164,7 @@ const sendGif = async (client, channel) => {
 
 
 module.exports = {
-    sendMessageForMiniMilitia,
+    sendMessageForCOD,
     sendMessageForMarkInOrWeekend,
     sendMessageForMarkOut,
     sendMessageForCall,

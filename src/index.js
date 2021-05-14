@@ -6,7 +6,7 @@ var cron = require('node-cron');
 const wolframAPI = require('./tasks/wolframAPI');
 const playMusic = require('./tasks/playMusic');
 const translateMyText = require('./tasks/translateMyText');
-const { sendMessageForMiniMilitia,
+const { sendMessageForCOD,
     sendMessageForMarkInOrWeekend,
     sendMessageForMarkOut,
     sendMessageForCall,
@@ -101,7 +101,7 @@ client.on('ready',()=>{
     cron.schedule('30 16 * * *',()=>{
         console.log('game trigger!');
         sendGif(client);
-        sendMessageForMiniMilitia(client, channel);
+        sendMessageForCOD(client, channel);
     })
 })
 
