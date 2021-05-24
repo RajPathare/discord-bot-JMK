@@ -5,7 +5,6 @@ const factful = require('factful.js');
 const getMyDay = require('./getDay');
 const facts = factful.fact();
 
-
 const sendMessageForFeature = async (client, channel) => {
     var day = getMyDay();
     if(day == 'Saturday' || day == 'Sunday')
@@ -162,6 +161,11 @@ const sendGif = async (client, channel) => {
     });
 }
 
+const sendMessageForBirthday = async (client, channel, name) => {
+
+    channel.send(`Happy Birthday ${name}!! :heart:`, {files: ["https://mir-s3-cdn-cf.behance.net/project_modules/disp/6b3fe963030867.5aa3707f0c627.gif"]});
+
+}
 
 module.exports = {
     sendMessageForCOD,
@@ -172,5 +176,6 @@ module.exports = {
     sendMessageForJoke,
     sendMessageForFact,
     sendGif,
-    sendMessageForFeature
+    sendMessageForFeature,
+    sendMessageForBirthday
 }
