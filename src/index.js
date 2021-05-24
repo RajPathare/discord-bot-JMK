@@ -104,10 +104,10 @@ client.on('ready',()=>{
         sendGif(client);
         sendMessageForCOD(client, channel);
     })
-    cron.schedule('30 18 * * *',()=>{
-        console.log('birthday trigger!');
-        sendMessageForBirthday(client, channel, "Yash");
-    })
+    // cron.schedule('30 18 * * *',()=>{
+    //     console.log('birthday trigger!');
+    //     sendMessageForBirthday(client, channel, "Raj");
+    // })
 })
 
 app.listen(PORT, () => {
