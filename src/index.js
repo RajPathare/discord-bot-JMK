@@ -14,7 +14,8 @@ const { sendMessageForCOD,
     sendMessageForJoke,
     sendMessageForFact,
     sendGif,
-    sendMessageForFeature } = require('./tasks/sendMyMessages');
+    sendMessageForFeature,
+    sendMessageForBirthday } = require('./tasks/sendMyMessages');
 
 const prefix = '@';
 const app = express();
@@ -64,7 +65,7 @@ client.on('ready',()=>{
 
     console.log('ready!');
 
-    const channel = client.channels.cache.find(channel => channel.name === "general")
+    const channel = client.channels.cache.find(channel => channel.name === "general");
 
     cron.schedule('00 05 * * *',()=>{
         console.log('markin trigger!');
@@ -102,6 +103,10 @@ client.on('ready',()=>{
         console.log('game trigger!');
         sendGif(client);
         sendMessageForCOD(client, channel);
+    })
+    cron.schedule('30 18 * * *',()=>{
+        console.log('birthday trigger!');
+        sendMessageForBirthday(client, channel, "Yash");
     })
 })
 
