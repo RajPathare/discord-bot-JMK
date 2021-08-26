@@ -71,10 +71,10 @@ client.on('ready',()=>{
         console.log('markin trigger!');
         sendMessageForMarkInOrWeekend(client, channel);
     })
-    cron.schedule('30 06 * * *',()=>{
-        console.log('call trigger!');
-        sendMessageForCall(client, channel);
-    })
+    // cron.schedule('30 06 * * *',()=>{
+    //     console.log('call trigger!');
+    //     sendMessageForCall(client, channel);
+    // })
     // cron.schedule('45 06 * * *',()=>{
     //     console.log('feature trigger');
     //     sendMessageForFeature(client, channel);
@@ -87,10 +87,10 @@ client.on('ready',()=>{
         console.log('joke trigger!');
         sendMessageForJoke(client, channel);
     })
-    cron.schedule('00 12 * * *',()=>{
-        console.log('fact trigger!');
-        sendMessageForFact(client, channel);
-    })
+    // cron.schedule('00 12 * * *',()=>{
+    //     console.log('fact trigger!');
+    //     sendMessageForFact(client, channel);
+    // })
     cron.schedule('00 13 * * *',()=>{
         console.log('fact trigger!');
         sendMessageForFact(client, channel);
