@@ -61,11 +61,12 @@ client.on("message", async (message)=>{
     
 })
 
-client.on('ready',()=>{
+client.on('ready', async ()=>{
 
     console.log('ready!');
 
-    const channel = client.channels.cache.find(channel => channel.name === "general");
+    // const channel = client.channels.cache.find(channel => channel.name === "general");
+    const channel = await client.channels.fetch("883316926628110386");
 
     cron.schedule('00 05 * * *',()=>{
         console.log('markin trigger!');
