@@ -100,6 +100,11 @@ client.on('ready', async ()=>{
         console.log('markout trigger!');
         sendMessageForMarkOut(client, channel);
     })
+    cron.schedule('50 14 * * *',()=>{
+        console.log('game trigger!');
+        sendGif(client);
+        sendMessageForMarkOut(client, channel);
+    })
     cron.schedule('30 16 * * *',()=>{
         console.log('game trigger!');
         sendGif(client);
