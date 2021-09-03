@@ -99,11 +99,11 @@ client.on('ready',()=>{
         console.log('markout trigger!');
         sendMessageForMarkOut(client, channel);
     })
-    cron.schedule('30 16 * * *',()=>{
-        console.log('game trigger!');
-        sendGif(client);
-        sendMessageForCOD(client, channel);
-    })
+    // cron.schedule('30 16 * * *',()=>{
+    //     console.log('game trigger!');
+    //     sendGif(client);
+    //     sendMessageForCOD(client, channel);
+    // })
     // cron.schedule('30 18 * * *',()=>{
     //     console.log('birthday trigger!');
     //     sendMessageForBirthday(client, channel, "Raj");
