@@ -13,8 +13,8 @@ const sendMessageForFeature = async (client, channel) => {
     }
     else
     {
-        channel.send("Do you know? I can now talk in most of the languages! I'll try translating whatever you say!");
-        channel.send("Try doing this - @translate hello marathi");
+       await channel.send("Do you know? I can now talk in most of the languages! I'll try translating whatever you say!");
+       await channel.send("Try doing this - @translate hello marathi");
     }
 }
 
@@ -22,21 +22,21 @@ const sendMessageForCOD = async (client, channel) => {
     var day = getMyDay();
     if(day == 'Saturday')
     {
-        channel.send(`@everyone Hey it's ${day}! Who's up for COD?`);
+        await channel.send(`@everyone Hey it's ${day}! Who's up for COD?`);
     }
     else if(day == 'Sunday')
     {
         
-        channel.send(`@everyone Hey it's ${day}! I know you gotta get up early tomorrow but there's always time for COD!`);
+        await channel.send(`@everyone Hey it's ${day}! I know you gotta get up early tomorrow but there's always time for COD!`);
     }
     else if(day == 'Friday')
     {
        
-        channel.send(`@everyone Finally it's ${day}! We gotta play COD!`);
+        await channel.send(`@everyone Finally it's ${day}! We gotta play COD!`);
     }
     else
     {
-        channel.send("@everyone COD anyone?");
+        await channel.send("@everyone COD anyone?");
     }
 }
 
@@ -45,17 +45,17 @@ const sendMessageForMarkInOrWeekend = async (client, channel) => {
     if(day == 'Saturday')
     {
         console.log('Weekend!');
-        channel.send(`@everyone Even if it's ${day}, I hope to see you soon!`);
+        await channel.send(`@everyone Even if it's ${day}, I hope to see you soon!`);
     }
     else if(day == 'Sunday')
     {
         console.log('Weekend!');
-        channel.send(`@everyone -yawns- Good morning everyone! Happy ${day}!`);
+        await channel.send(`@everyone -yawns- Good morning everyone! Happy ${day}!`);
     }
     else
     {
         console.log('Normal day!');
-        channel.send("@everyone This is the right time to mark in!");
+        await channel.send("@everyone This is the right time to mark in!");
     }
 }
 
@@ -67,7 +67,7 @@ const sendMessageForMarkOut = async (client, channel) => {
     }
     else
     {
-        channel.send("@everyone Maybe you can mark out now.");
+        await channel.send("@everyone Maybe you can mark out now.");
     }
 }
 
@@ -79,7 +79,7 @@ const sendMessageForCall = async (client, channel) => {
     }
     else if(day == 'Monday' || day == 'Thursday')
     {
-       channel.send("Hey it's time for standup! Do you remember the code? Let me help you out - 243319");
+        await channel.send("Hey it's time for standup! Do you remember the code? Let me help you out - 243319");
     }
     else {
         console.log('No message!');
@@ -96,9 +96,9 @@ const sendQuote = async (client, channel) => {
     {
         var theQuote = await Quote.getQuote();
         console.log(theQuote);
-        channel.send("It's almost half-day! Here's a nice quote for you which might inspire you in some way ~");
-        channel.send(theQuote.text);
-        channel.send(` - ${theQuote.author}`);
+        await channel.send("It's almost half-day! Here's a nice quote for you which might inspire you in some way ~");
+        await channel.send(theQuote.text);
+        await channel.send(` - ${theQuote.author}`);
     }
 }
 
@@ -112,8 +112,8 @@ const sendMessageForJoke = async (client, channel) => {
     {
         var getRandomJoke = oneLinerJoke.getRandomJokeWithTag('flirty');
         console.log(getRandomJoke);
-        channel.send("Hmm... I can't bear silence. I just came up with a pickup line, hope you'll like it!");
-        channel.send(getRandomJoke.body);
+        await channel.send("Hmm... I can't bear silence. I just came up with a pickup line, hope you'll like it!");
+        await channel.send(getRandomJoke.body);
     }
 }
 
@@ -134,15 +134,15 @@ const sendMessageForFact = async (client, channel) => {
         if(finalType == 'facts.computer')
         {
             console.log('computer');
-            channel.send("Here's a random computer fact for you!");
-            channel.send(facts.computer);
+            await channel.send("Here's a random computer fact for you!");
+            await channel.send(facts.computer);
 
         }
         if(finalType == 'facts.space')
         {
             console.log('space');
-            channel.send("Here's a random space fact for you!");
-            channel.send(facts.space);
+            await channel.send("Here's a random space fact for you!");
+            await channel.send(facts.space);
         }
     }
 }
@@ -154,16 +154,16 @@ const sendGif = async (client, channel) => {
         total: 1, 
         addSubreddit: ['memes', 'funny'], 
         removeSubreddit: ['dankmemes']
-    }).then(result => {
+    }).then(async (result) => {
         console.log(result[0].image) 
         let attachment = new Discord.MessageAttachment(result[0].image);
-        channel.send(attachment);
+        await channel.send(attachment);
     });
 }
 
 const sendMessageForBirthday = async (client, channel, name) => {
 
-    channel.send(`Happy Birthday ${name}!! :heart:`, {files: ["https://mir-s3-cdn-cf.behance.net/project_modules/disp/6b3fe963030867.5aa3707f0c627.gif"]});
+    await channel.send(`Happy Birthday ${name}!! :heart:`, {files: ["https://mir-s3-cdn-cf.behance.net/project_modules/disp/6b3fe963030867.5aa3707f0c627.gif"]});
 
 }
 

@@ -68,8 +68,6 @@ client.on('ready', async ()=>{
     // const channel = client.channels.cache.find(channel => channel.name === "general");
     const channel = await client.channels.fetch("883316926628110386");
 
-    await channel.send("ok!");
-
     cron.schedule('00 05 * * *',()=>{
         console.log('markin trigger!');
         sendMessageForMarkInOrWeekend(client, channel);
@@ -102,16 +100,11 @@ client.on('ready', async ()=>{
         console.log('markout trigger!');
         sendMessageForMarkOut(client, channel);
     })
-    cron.schedule('42 14 * * *', async ()=>{
-        console.log('check trigger!');
-        await channel.send("ok");
-       
+    cron.schedule('30 16 * * *',()=>{
+        console.log('game trigger!');
+        sendGif(client);
+        sendMessageForCOD(client, channel);
     })
-    // cron.schedule('30 16 * * *',()=>{
-    //     console.log('game trigger!');
-    //     sendGif(client);
-    //     sendMessageForCOD(client, channel);
-    // })
     // cron.schedule('30 18 * * *',()=>{
     //     console.log('birthday trigger!');
     //     sendMessageForBirthday(client, channel, "Raj");
