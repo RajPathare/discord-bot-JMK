@@ -105,7 +105,7 @@ client.on('ready', async ()=>{
     //     sendGif(client);
     //     sendMessageForCOD(client, channel);
     // })
-    // cron.schedule('30 18 * * *',()=>{
+    // cron.schedule('30 03 * * *',()=>{
     //     console.log('birthday trigger!');
     //     sendMessageForBirthday(client, channel, "Raj");
     // })
